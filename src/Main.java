@@ -1,9 +1,7 @@
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
+// For the password evaluation
 import com.nulabinc.zxcvbn.Zxcvbn;
 import com.nulabinc.zxcvbn.Strength;
 
@@ -57,6 +55,7 @@ class SimplePasswordGenerator {
             }
         }
 
+        // Custom set Input
         String customSet = "";
         System.out.print("Would you like to use a custom character set? (y/n): ");
         boolean useCustomSet = validateYesNoInput(scanner);
@@ -79,6 +78,7 @@ class SimplePasswordGenerator {
         scanner.close();
     }
 
+    // Ensures that right inputs are given
     private static boolean validateYesNoInput(Scanner scanner) {
         char input;
         while (true) {
@@ -125,7 +125,8 @@ class SimplePasswordGenerator {
         }
 
         int passwordLength = minLength;
-        Collections.shuffle(characterPool); // Shuffle the pool to ensure randomness
+        // Shuffle the pool to ensure randomness
+        Collections.shuffle(characterPool);
 
         char[] password = new char[passwordLength];
 
