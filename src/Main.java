@@ -4,6 +4,9 @@ import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.nulabinc.zxcvbn.Zxcvbn;
+import com.nulabinc.zxcvbn.Strength;
+
 class SimplePasswordGenerator {
     private static final String LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
     private static final String UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -39,13 +42,13 @@ class SimplePasswordGenerator {
 
         while (!validInput) {
             System.out.print("Include lowercase letters? (y/n): ");
-            includeLower = scanner.next().toLowerCase().charAt(0) == 'y';
+            includeLower = validateYesNoInput(scanner);
             System.out.print("Include uppercase letters? (y/n): ");
-            includeUpper = scanner.next().toLowerCase().charAt(0) == 'y';
+            includeUpper = validateYesNoInput(scanner);
             System.out.print("Include numbers? (y/n): ");
-            includeDigits = scanner.next().toLowerCase().charAt(0) == 'y';
+            includeDigits = validateYesNoInput(scanner);
             System.out.print("Include symbols? (y/n): ");
-            includeSymbols = scanner.next().toLowerCase().charAt(0) == 'y';
+            includeSymbols = validateYesNoInput(scanner);
 
             if (!includeLower && !includeUpper && !includeDigits && !includeSymbols) {
                 System.out.println("Error! At least one option must be chosen.");
@@ -56,7 +59,7 @@ class SimplePasswordGenerator {
 
         String customSet = "";
         System.out.print("Would you like to use a custom character set? (y/n): ");
-        boolean useCustomSet = scanner.next().toLowerCase().charAt(0) == 'y';
+        boolean useCustomSet = validateYesNoInput(scanner);
         if (useCustomSet) {
             System.out.print("Enter custom character set: ");
             customSet = scanner.next();
@@ -67,7 +70,27 @@ class SimplePasswordGenerator {
 
         // Display generated password
         System.out.println("Generated password: " + password);
+
+        // Display with password strength zxcvbn library
+        Zxcvbn zxcvbn = new Zxcvbn();
+        Strength strength = zxcvbn.measure(password);
+        System.out.println("Password strength: " + strength.getScore() + " (0=weak, 4=strong)");
+
         scanner.close();
+    }
+
+    private static boolean validateYesNoInput(Scanner scanner) {
+        char input;
+        while (true) {
+            input = scanner.next().toLowerCase().charAt(0);
+            if (input == 'y') {
+                return true;
+            } else if (input == 'n') {
+                return false;
+            } else {
+                System.out.println("Invalid input. Please enter 'y' or 'n'.");
+            }
+        }
     }
 
     private static String generatePassword(int minLength, boolean includeLower, boolean includeUpper, boolean includeDigits, boolean includeSymbols, String customSet) {
