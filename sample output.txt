@@ -1,0 +1,39 @@
+Example output:
+
+Case 1:
+
+Enter the password length. It must be between 8-20 characters: 4
+Error! Given number is off limits.
+Enter the password length. It must be between 8-20 characters: 16
+Include lowercase letters? (y/n): y
+Include uppercase letters? (y/n): l
+Invalid input. Please enter 'y' or 'n'.
+n
+Include numbers? (y/n): y
+Include symbols? (y/n): n
+Would you like to use a custom character set? (y/n): y
+Enter custom character set: /|\
+Generated password: nep4e2/m\4zmj3ss
+Password strength: 4 (0=weak, 4=strong)
+
+Process finished with exit code 0
+
+Case 2:
+
+Enter the password length. It must be between 8-20 characters: 4
+Error! Given number is off limits.
+Enter the password length. It must be between 8-20 characters: 8
+Include lowercase letters? (y/n): n
+Include uppercase letters? (y/n): n
+Include numbers? (y/n): n
+Include symbols? (y/n): n
+Error! At least one option must be chosen.
+Include lowercase letters? (y/n): n
+Include uppercase letters? (y/n): n
+Include numbers? (y/n): y
+Include symbols? (y/n): y
+Would you like to use a custom character set? (y/n): n
+Generated password: &(4{2|?7
+Password strength: 2 (0=weak, 4=strong)
+
+Process finished with exit code 0
