@@ -139,4 +139,17 @@ Password Strength Evaluation:
 
     + The generated password and its strength score are displayed in the console.
 
-<ins>Output example will be given in a .txt file and a screenshot.</ins> 
+## Output Example:
+```
+    Enter the password length. It must be between 8-20 characters: 8
+    Include lowercase letters? (y/n): y
+    Include uppercase letters? (y/n): n
+    Include numbers? (y/n): y
+    Include symbols? (y/n): y
+    Would you like to use a custom character set? (y/n): n
+    Generated password: qsd3j$zd
+    Password strength: 2 (0=weak, 4=strong)
+
+    Process finished with exit code 0
+```
+<ins>Other output examples will be given in a .txt file and a screenshot.</ins> 
